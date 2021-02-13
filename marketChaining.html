@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Market Chaining</title>
+  </head>
+
+  <body>
+    <span id="parent"></span><br />
+    <span id="YN"></span><br /><br />
+    <p id="comm"></p>
+    <p id="member"></p>
+
+    <script>
+
+      var par = window.prompt("Enter Parent Name !!!");
+      var child;
+      const schemeAmt = 5000;
+      if (par == null || par.trim() == "") {
+        alert("Enter your name first");
+        window.location.reload();
+      } else {
+        document.getElementById("parent").innerHTML = "Parent :" + par;
+
+        var yN = window.prompt(
+          "Would you like to add someone and make a chain ?" + "Y or N"
+        );
+
+        if (yN == "Y" || yN == "y") {
+          document.getElementById("YN").innerHTML = "Add Child : Yes";
+          child = window.prompt("Enter Children names ! separated by ',' ");
+        } else if (yN == "N" || yN == "n") {
+          document.getElementById("YN").innerHTML = "Add Child : No";
+          var parCom = (5 / 100) * schemeAmt;
+          document.getElementById("member").innerHTML = "Total Members : " + 1;
+          document.getElementById("comm").innerHTML =
+            par + " got commission of Rs : " + parCom;
+        } else {
+          alert("Enter correct value");
+          location.reload();
+        }
+
+        if (child != "") {
+          var sum = 0;
+          var i;
+          var childComm;
+          var childArr = child.split(",");
+          var count = 0;
+          for (i = 0; i < childArr.length; i++) {
+            if (childArr[i] == "") {
+              continue;
+            } else {
+              count++;
+              var span1 = document.createElement("span");
+              var break1 = document.createElement("br");
+
+              span1.innerHTML = "Child " + count + ". " + childArr[i];
+
+              document.body.appendChild(break1);
+              document.body.appendChild(span1);
+              document.body.appendChild(break1);
+            }
+          }
+        }
+
+        count += 1;
+        var para = document.createElement("p");
+        para.innerHTML = "Total Members : " + count;
+        document.body.appendChild(para);
+        var parCom = (5 / 100) * schemeAmt;
+        document.getElementById("comm").innerHTML =
+          par + " got commission of Rs : " + parCom;
+
+        var p1 = document.createElement("p");
+        p1.innerHTML = "Commission Detail : ";
+        document.body.appendChild(break1);
+        document.body.appendChild(p1);
+        var parCommission = sum + (10 / 100) * schemeAmt * childArr.length;
+        sum = parCommission;
+        var span3 = document.createElement("span");
+        span3.innerHTML = par + " Got commission of Rs : " + parCommission;
+        document.body.appendChild(span3);
+
+        for (var j = 0; j < childArr.length; j++) {
+          if (childArr[j] == "") {
+            continue;
+          } else {
+            childComm = (5 / 100) * schemeAmt;
+            var p2 = document.createElement("p");
+            p2.innerHTML =
+              childArr[j] + " got Rs : " + childComm + " as Commision";
+            document.body.appendChild(p2);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
